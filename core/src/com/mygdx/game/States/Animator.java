@@ -54,7 +54,7 @@ public class Animator {
         //We use the dt to obtain the current frame
         currentFrame = walkAnimation.getKeyFrame(stateTime, true);
         spriteBatch.begin();
-        spriteBatch.draw(currentFrame, hero.getX(), hero.getY());
+        spriteBatch.draw(currentFrame, hero.getX(), hero.getY(),hero.getWidth(),hero.getHeight());
         spriteBatch.end();
     }
 

@@ -10,11 +10,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
  */
 public class MenuState extends State {
 
-    private Texture background;
-
     public MenuState(GSM gsm) {
         super(gsm);
-        background = new Texture("purple.jpg");
     }
 
     @Override
@@ -24,10 +21,7 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        sb.begin();
-        sb.draw(background, 0 ,0, 500, 500 );
-        sb.end();
-
+        Gdx.gl20.glClearColor(169f/255f,169f/255f,169f/255f,169f/255f);
         //Put gesture function here instead of "justTouched".
         if (Gdx.input.justTouched()) {
             gsm.set(new PlayState(gsm));

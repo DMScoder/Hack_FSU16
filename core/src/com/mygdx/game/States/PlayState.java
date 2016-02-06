@@ -21,12 +21,12 @@ public class PlayState extends State{
     int ledgeCount = 20;
     Hero hero;
     TheMaster master;
-    Animator animator = new Animator();
+    //Animator animator = new Animator();
 
     public PlayState(GSM gsm)
     {
         super(gsm);
-        animator.create();
+        //animator.create();
         makeTextures();
         background = new ScrollingBackground(this);
         hero = new Hero(200,200,this);
@@ -139,9 +139,9 @@ public class PlayState extends State{
         Ledge.texture = new Texture(pixmap);
         pixmap.dispose();
 
-        pixmap = new Pixmap(15,30, Pixmap.Format.RGBA8888);
+        pixmap = new Pixmap(10,40, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.BLUE);
-        //pixmap.fill();
+        pixmap.fill();
         Hero.texture = new Texture(pixmap);
         pixmap.dispose();
 
@@ -199,7 +199,7 @@ public class PlayState extends State{
     }
     public void render(SpriteBatch batch)
     {
-        animator.render(hero);
+        //animator.render(hero);
         batch.begin();
 
         for(Entity entity : entities)

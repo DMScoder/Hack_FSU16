@@ -23,8 +23,6 @@ public class Hero extends Entity{
     private float orientation = 1;
     boolean onLedge = false;
     private PlayState playState;
-    Animator animator = new Animator();
-
 
     public Hero(float x, float y, PlayState state)
     {
@@ -38,7 +36,6 @@ public class Hero extends Entity{
         if(Gdx.input.isKeyPressed(Input.Keys.F))
             reverseGravity();
         move();
-        //animator.render(this);
 
         ticks++;
 
@@ -100,11 +97,11 @@ public class Hero extends Entity{
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A))
         {
-            dx-=1;
+            dx-=2;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D))
         {
-            dx+=1;
+            dx+=2;
         }
 
         dy+=gravity;
@@ -119,7 +116,7 @@ public class Hero extends Entity{
         else
             this.setY(this.getY()+dy);
 
-        dx/=1.05;
+        dx/=1.5;
         //dy/=1.1;
     }
 }
