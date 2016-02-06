@@ -7,6 +7,11 @@ import com.mygdx.game.MainLeap;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+
+		config.title = "Mastermind";
+		config.width = 1024;
+		config.height = 768;
+		//config.fullscreen = true;
 		new LwjglApplication(new MainLeap(), config);
 	}
 }

@@ -13,6 +13,7 @@ public class GSM {
 
     public GSM() {
         states = new Stack<State>();
+        this.push(new PlayState(this));
     }
 
     public void push(State state) {
@@ -28,11 +29,6 @@ public class GSM {
         states.pop().dispose();
         //Push in whatever new state we have.
         states.push(state);
-    }
-
-    //Update things like speed of hero.
-    public void update(float dt) {
-        states.peek().update(dt);
     }
 
     //render to screen anything new we have.
