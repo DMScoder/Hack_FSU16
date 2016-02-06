@@ -39,12 +39,12 @@ public class GSM {
         states.peek().moveCommand(x, y, z);
 
     }
-    public void circleCommand(int circleID, boolean isclockwise, double sweptAngle, float x, float y)
+    public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y)
     {
-        if(states.peek() instanceof PlayState)
-            ;
+        states.peek().circleCommand(isclockwise, sweptAngle, x,y);
+    }
 
-
-
+    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y){
+        states.peek().swipeCommand(direction, speed, x, y);
     }
 }

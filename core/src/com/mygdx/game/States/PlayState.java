@@ -139,6 +139,19 @@ public class PlayState extends State{
         master.setX(x);
         master.setY(y);
     }
+    public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y)
+    {
+        if(isclockwise == true)
+            master.setColor(Color.RED);
+        else
+            master.setColor(Color.BLUE);
+    }
+    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y){
+        if(direction.getX() >= 0 )
+            master.setColor(Color.GREEN);
+        else
+            master.setColor(Color.BLACK);
+    }
     public void render(SpriteBatch batch)
     {
         batch.begin();
