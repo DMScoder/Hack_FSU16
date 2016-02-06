@@ -2,53 +2,82 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.leapmotion.leap.*;
+import com.mygdx.game.States.GSM;
 
-public class MainLeap extends ApplicationAdapter {
+public class MainLeap extends ApplicationAdapter implements InputProcessor{
+
 	SpriteBatch batch;
-	Texture img;
-	Controller controller;
-	SampleListener listener;
-	static Hand hand;
-	static HandList hands;
-
-	static class SampleListener extends Listener{
-
-		public void onConnect(Controller controller)
-		{
-			System.out.println("Connected");
-		}
-
-		public void onFrame(Controller controller)
-		{
-			hands = controller.frame().hands();
-			hand = hands.get(0);
-		}
-	}
+	GSM manager;
+	LeapHandler leaphandler;
 
 	@Override
 	public void create () {
-		listener = new SampleListener();
-		controller = new Controller();
-		controller.addListener(listener);
+//		listener = new SampleListener();
+//		controller = new Controller();
+//		controller.addListener(listener);
 		batch = new SpriteBatch();
-		img = new Texture("core/assets/badlogic.jpg");
+		manager = new GSM();
+		leaphandler = new LeapHandler(manager);
+		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(.95f, .95f, .8f, 0);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img,hand.palmPosition().getX()+100,-hand.palmPosition().getZ());
-		batch.end();
+		manager.render(batch);
 	}
 
 	public void dispose()
 	{
 
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		if(keycode == Input.Keys.ESCAPE)
+			Gdx.app.exit();
+
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		return false;
 	}
 }
