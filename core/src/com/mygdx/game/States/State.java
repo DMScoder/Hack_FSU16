@@ -16,8 +16,12 @@ public abstract class State {
         this.gsm = gsm;
     }
 
+<<<<<<< HEAD
     protected abstract void handleInput();
     public abstract void update(float dt);
+=======
+    public abstract void handleInput();
+>>>>>>> origin/MainGame
     public abstract void render(SpriteBatch sb);
     public abstract void dispose();
 
