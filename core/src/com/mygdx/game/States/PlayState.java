@@ -128,6 +128,7 @@ public class PlayState extends State{
     public void render(SpriteBatch batch)
     {
         batch.begin();
+
         for(Entity entity : entities)
             entity.update();
 

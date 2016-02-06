@@ -16,6 +16,7 @@ public abstract class State {
         this.gsm = gsm;
     }
 
+
     protected abstract void handleInput();
     public abstract void render(SpriteBatch sb);
     public abstract void dispose();
