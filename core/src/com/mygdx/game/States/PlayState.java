@@ -59,7 +59,7 @@ public class PlayState extends State{
             return new Ledge(hero.getX(),hero.getY());
         }
 
-        float ledgeX = previous.getX() + 100;
+        float ledgeX = previous.getX() + 125;
         float ledgeY = 300;
 
         if(previous.getY() == 300)
@@ -133,13 +133,13 @@ public class PlayState extends State{
 
     public void makeTextures()
     {
-        Pixmap pixmap = new Pixmap(50,10, Pixmap.Format.RGBA8888);
+        Pixmap pixmap = new Pixmap(100,10, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.GRAY);
         pixmap.fill();
         Ledge.texture = new Texture(pixmap);
         pixmap.dispose();
 
-        pixmap = new Pixmap(30,30, Pixmap.Format.RGBA8888);
+        pixmap = new Pixmap(15,30, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.BLUE);
         //pixmap.fill();
         Hero.texture = new Texture(pixmap);

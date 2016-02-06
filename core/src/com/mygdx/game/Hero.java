@@ -55,17 +55,17 @@ public class Hero extends Entity{
                                 && !Gdx.input.isKeyPressed(Input.Keys.S)) {
                             onLedge = true;
                             dy = 0;
-                            dx = -1;
+                            dx = -2;
                             this.setY(ledge.getY() + ledge.getHeight());
                             gravity = 0;
                         }
                     }
                     else
                     {
-                        if(this.getY()+this.getHeight() >= ledge.getY()){
+                        if(this.getY()+this.getHeight() >= ledge.getY()&& !Gdx.input.isKeyPressed(Input.Keys.S)){
                             onLedge = true;
                             dy=0;
-                            dx = -1;
+                            dx = -2;
                             this.setY(ledge.getY() - this.getHeight());
                             gravity = 0;
                         }

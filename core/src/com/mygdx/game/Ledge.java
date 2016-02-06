@@ -19,9 +19,9 @@ public class Ledge extends Entity{
 
     public void update()
     {
-        this.setX(this.getX()-1);
-        if(this.getX()<-50f)
-            this.setX(Gdx.graphics.getWidth()+100f);
+        this.setX(this.getX()-2f);
+        if(this.getX()<-100f)
+            this.setX(Gdx.graphics.getWidth());
     }
 
 }
