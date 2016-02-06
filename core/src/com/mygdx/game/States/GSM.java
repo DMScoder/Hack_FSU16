@@ -47,4 +47,12 @@ public class GSM {
     {
         states.peek().swipeCommand(direction, speed, x, y);
     }
+    public void duoSwipeDownCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
+    {
+        states.peek().duoSwipeDownCommand(direction, speed, x, y);
+    }
+    public void pinchCommand()
+    {
+        states.peek().pinchCommand();
+    }
 }

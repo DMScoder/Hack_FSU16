@@ -35,17 +35,20 @@ public class LeapHandler{
                 hands = frame.hands();
                 hand = hands.get(0);
 
-            if(hand.palmPosition().getX()!=0&&hand.palmPosition().getY()!=0)
+            if(hand.stabilizedPalmPosition().getX()!=0&&hand.stabilizedPalmPosition().getY()!=0)
                 gameManager.moveCommand(hand.stabilizedPalmPosition().getX()*2.5f + Gdx.graphics.getWidth()/2,
                         hand.stabilizedPalmPosition().getY()*1.2f,
                         hand.stabilizedPalmPosition().getZ());
+
+            if(hand .pinchStrength() >= 0.6)
+                gameManager.pinchCommand();
 
             GestureList gestures = frame.gestures();
             for(int i=0; i < gestures.count(); i++) {
                 Gesture gesture = gestures.get(i);
 
-                controller.config().setFloat("Gesture.Swipe.MinVelocity", 500f);
-                controller.config().setFloat("Gesture.Swipe.MinLenght", 100f);
+                controller.config().setFloat("Gesture.Swipe.MinVelocity", 450f);
+                controller.config().setFloat("Gesture.Swipe.MinLength", 130f);
                 controller.config().save();
 
                 switch(gesture.type()){
@@ -72,15 +75,18 @@ public class LeapHandler{
 
                     case TYPE_SWIPE:
                         SwipeGesture swipe = new SwipeGesture(gesture);
-                        controller.config().setFloat("Gesture.Swipe.MinVelocity", 1000f);
-                        controller.config().setFloat("Gesture.Swipe.MinLength", 150f);
-                        controller.config().save();
-                        gameManager.swipeCommand(swipe.direction(), swipe.speed(), hand.stabilizedPalmPosition().getX(),hand.stabilizedPalmPosition().getY());
-//						System.out.println("Swipe ID: " + swipe.id() +
-//								" State: " + swipe.state() +
-//								" Swipe Position: " + swipe.position() +
-//								" Direction: " + swipe.direction() +
-//								" Speed: " + swipe.speed());
+
+                        if(hands.get(0).isValid() && hands.get(1).isValid())
+                        {
+                        gameManager.duoSwipeDownCommand(swipe.direction(), swipe.speed(), hand.palmPosition().getX(), hand.palmPosition().getY());
+                        }
+                        else
+                        gameManager.swipeCommand(swipe.direction(), swipe.speed(), hand.palmPosition().getX(),hand.palmPosition().getY());
+						/*System.out.println("Swipe ID: " + swipe.id() +
+								" State: " + swipe.state() +
+								" Swipe Position: " + swipe.position() +
+								" Direction: " + swipe.direction() +
+								" Speed: " + swipe.speed());*/
                         break;
                 }
             }

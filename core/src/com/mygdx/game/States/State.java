@@ -30,4 +30,10 @@ public abstract class State {
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
     {
     }
+    public void pinchCommand()
+    {
+    }
+    public void duoSwipeDownCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
+    {
+    }
 }
