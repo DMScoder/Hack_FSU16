@@ -1,11 +1,24 @@
 package com.mygdx.game.States;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.Stack;
 
 /**
  * Created by m on 2/6/16.
  */
-public class State {
+public abstract class State {
+    //Put whatever you want each state to have here.
+    //Things like a camera for example.
+    public GSM gsm;
 
-    private Stack<State> = states;
+    public State(GSM gsm) {
+        this.gsm = gsm;
+    }
+
+    public abstract void handleInput();
+    public abstract void update(float dt);
+    public abstract void render(SpriteBatch sb);
+    public abstract void dispose();
+
 }
