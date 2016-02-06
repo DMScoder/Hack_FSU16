@@ -19,7 +19,7 @@ public class MenuState extends State {
     public void handleInput() {
         //Should make this able to communicate with LeapMotion.
         if (Gdx.input.justTouched()) {
-            //DO THIS--> gsm.set(new PlayState(gsm));
+            gsm.set(new PlayState(gsm));
             //Should add this later if we have images -->
             //dispose();
         }

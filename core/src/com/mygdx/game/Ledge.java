@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -20,7 +21,7 @@ public class Ledge extends Entity{
     {
         this.setX(this.getX()-1);
         if(this.getX()<-50f)
-            this.setX(1200f);
+            this.setX(Gdx.graphics.getWidth()+100f);
     }
 
 }

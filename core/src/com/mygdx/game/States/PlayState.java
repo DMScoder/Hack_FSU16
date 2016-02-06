@@ -4,10 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.*;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -34,6 +32,10 @@ public class PlayState extends State{
         generateInitialLedges();
         entities.add(hero);
         entities.add(master);
+    }
+
+    public ArrayList<Entity> getEntity() {
+        return entities;
     }
 
     private void generateInitialLedges()
@@ -129,7 +131,7 @@ public class PlayState extends State{
 
     public void reverseGravity()
     {
-        //hero.reverseGravity();
+        hero.reverseGravity();
     }
 
     public void moveCommand(float x, float y, float z){
@@ -140,6 +142,7 @@ public class PlayState extends State{
     public void render(SpriteBatch batch)
     {
         batch.begin();
+
         for(Entity entity : entities)
             entity.update();
 
