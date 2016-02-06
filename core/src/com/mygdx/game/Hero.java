@@ -17,7 +17,6 @@ public class Hero extends Entity{
     private float dy = 0;
     private float gravity = -3;
     private PlayState playState;
-    private Util util = new Util();
 
     public Hero(float x, float y, PlayState state)
     {
@@ -37,9 +36,13 @@ public class Hero extends Entity{
             if (entities.get(i) instanceof Ledge) {
                 ledge = entities.get(i);
 
-                if(Util.checkCollision(this, ledge) && (this.getY() <= (ledge.getY() + ledge.getHeight())) ) {
+                if(Util.checkCollision(this, ledge)
+                        &&(this.getY() <= (ledge.getY() + ledge.getHeight()))
+                        &&!Gdx.input.isKeyPressed(Input.Keys.S) ) {
+
                     onLedge = true;
                     dy = 0;
+                    dx = -1;
                     this.setY(ledge.getY() + ledge.getHeight());
                     gravity = 0;
                 }
@@ -47,10 +50,9 @@ public class Hero extends Entity{
         }
 
         if(onLedge == false)
+        {
             gravity  = -3;
-
-
-
+        }
     }
 
     public void reverseGravity()
@@ -66,7 +68,7 @@ public class Hero extends Entity{
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S))
         {
-            dy-=3;
+            dy-=1;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A))
         {
