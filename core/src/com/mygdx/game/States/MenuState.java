@@ -28,6 +28,7 @@ public class MenuState extends State {
         sb.draw(background, 0 ,0, 500, 500 );
         sb.end();
 
+        //Put gesture function here instead of "justTouched".
         if (Gdx.input.justTouched()) {
             gsm.set(new PlayState(gsm));
         }
