@@ -64,6 +64,7 @@ public class LeapHandler{
 							sweptAngle = (circle.progress() - previous.progress()) * 2 * Math.PI;
 						}
                         controller.config().setFloat("Gesture.Circle.MinArc", 6f);
+                        controller.config().save();
 
                         gameManager.circleCommand(isclockwise, sweptAngle, hand.stabilizedPalmPosition().getX(),hand.stabilizedPalmPosition().getY());
                         //System.out.println("Circle ID: " + circle.id() + " State: " + circle.state() + " Progress: " + circle.progress() + " " + clockwiseness);
