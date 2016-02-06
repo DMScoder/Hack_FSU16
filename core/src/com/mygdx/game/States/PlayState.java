@@ -32,6 +32,10 @@ public class PlayState extends State{
         entities.add(hero);
     }
 
+    public ArrayList<Entity> getEntity() {
+        return entities;
+    }
+
     private void generateInitialLedges()
     {
         Ledge previous = null;
