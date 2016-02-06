@@ -9,9 +9,9 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
 		config.title = "Mastermind";
-		config.width = 1024;
-		config.height = 768;
-		//config.fullscreen = true;
+		config.width = 1208;
+		config.height = 786;
+		config.fullscreen = true;
 		new LwjglApplication(new MainLeap(), config);
 	}
 }

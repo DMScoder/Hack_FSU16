@@ -38,6 +38,7 @@ public class MainLeap extends ApplicationAdapter implements InputProcessor{
 		controller.addListener(listener);
 		batch = new SpriteBatch();
 		manager = new GSM();
+		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override

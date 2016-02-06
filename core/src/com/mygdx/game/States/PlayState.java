@@ -30,7 +30,7 @@ public class PlayState extends State{
         super(gsm);
         makeTextures();
         background = new ScrollingBackground(this);
-        hero = new Hero(200,200);
+        hero = new Hero(200,200,this);
         generateInitialLedges();
         entities.add(hero);
     }
