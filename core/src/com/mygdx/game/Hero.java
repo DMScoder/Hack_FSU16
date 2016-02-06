@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.States.Animator;
 import com.mygdx.game.States.PlayState;
 
 import java.util.ArrayList;
@@ -17,16 +19,20 @@ public class Hero extends Entity{
     private float dy = 0;
     private float gravity = -3;
     private PlayState playState;
+    Animator animator = new Animator();
+
 
     public Hero(float x, float y, PlayState state)
     {
         super(x,y,texture);
         this.playState = state;
+        //have to deal with collision in a new way.
     }
 
     public void update()
     {
         move();
+        //animator.render(this);
 
         ArrayList<Entity> entities =  playState.getEntity();
         Entity ledge = null;

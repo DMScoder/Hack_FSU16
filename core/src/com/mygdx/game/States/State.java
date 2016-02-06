@@ -20,7 +20,6 @@ public abstract class State {
     protected abstract void handleInput();
     public abstract void render(SpriteBatch sb);
     public abstract void dispose();
-
     public void moveCommand(float x, float y, float z){
     }
     public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y)
