@@ -116,7 +116,8 @@ public class Hero extends Entity{
         else
             this.setY(this.getY()+dy);
 
-        dx/=1.5;
+        if(!onLedge)
+            dx/=1.5;
         //dy/=1.1;
     }
 }

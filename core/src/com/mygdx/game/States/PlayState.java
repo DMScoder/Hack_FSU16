@@ -21,6 +21,11 @@ public class PlayState extends State {
     int ledgeCount = 20;
     Hero hero;
     TheMaster master;
+
+    boolean isPinched = false;
+    long ticks = 0;
+    long lastPinch = 0;
+    long currentPinch = 0;
     //Animator animator = new Animator();
 
     public PlayState(GSM gsm) {
@@ -172,10 +177,7 @@ public class PlayState extends State {
     }
 
     public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y) {
-        if(isclockwise == true)
-            master.setColor(Color.RED);
-        else
-            master.setColor(Color.BLUE);
+        reverseGravity();
     }
 
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y) {
@@ -191,16 +193,43 @@ public class PlayState extends State {
 
     public void duoSwipeDownCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
     {
-        if(direction.getY() >= 0)
+        /*if(direction.getY() >= 0)
             master.setColor(Color.BLUE);
         else
-            master.setColor(Color.RED);
+            master.setColor(Color.RED);*/
     }
     public void pinchCommand() {
-        //master.setColor(Color.PINK);
+
+        if(lastPinch > ticks)
+            return;
+        lastPinch = ticks + 120;
+        TheMaster master2 = master;
+        TheMaster.texture = new Texture("Pinch");
+        master = new TheMaster(master2.getX(),master2.getY());
+
+        if(Math.abs(hero.getX()-master.getX())<50&&Math.abs(hero.getY()-master.getY())<50)
+        {
+            System.out.println("PINCHED");
+            currentPinch = ticks + 360;
+            lastPinch = ticks + 720;
+            isPinched = true;
+        }
     }
     public void render(SpriteBatch batch)
     {
+        /*if(!isPinched&&lastPinch==ticks)
+        {
+            TheMaster master2 = master;
+            TheMaster.texture = new Texture("Untitled.png");
+            master = new TheMaster(master2.getX(),master2.getY());
+        }*/
+
+        if(isPinched&&currentPinch<ticks)
+        {
+            hero.setX(master.getX());
+            hero.setY(master.getY());
+        }
+        ticks++;
         //animator.render(hero);
         batch.begin();
 

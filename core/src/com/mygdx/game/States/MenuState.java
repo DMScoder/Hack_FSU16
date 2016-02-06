@@ -1,14 +1,18 @@
 package com.mygdx.game.States;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.leapmotion.leap.Vector;
 
 /**
  * Created by m on 2/6/16.
  */
 public class MenuState extends State {
+
+    boolean swiped = false;
 
     public MenuState(GSM gsm) {
         super(gsm);
@@ -21,12 +25,22 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
+
         Gdx.gl20.glClearColor(169f/255f,169f/255f,169f/255f,169f/255f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //Put gesture function here instead of "justTouched".
-        if (Gdx.input.justTouched()) {
+        if (swiped) {
             gsm.set(new PlayState(gsm));
         }
 
+    }
+
+    @Override
+    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y) {
+        //super.swipeCommand(direction, speed, x, y);
+        System.out.println("Swiped");
+        swiped = true;
+        //gsm.set(new PlayState(gsm));
     }
 
     @Override

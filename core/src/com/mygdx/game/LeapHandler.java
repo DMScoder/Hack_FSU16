@@ -40,7 +40,7 @@ public class LeapHandler{
                         hand.stabilizedPalmPosition().getY()*1.2f,
                         hand.stabilizedPalmPosition().getZ());
 
-            if(hand .pinchStrength() >= 0.6)
+            if(hand .pinchStrength() >= 0.9)
                 gameManager.pinchCommand();
 
             GestureList gestures = frame.gestures();
@@ -48,7 +48,7 @@ public class LeapHandler{
             for(int i =0; i < gestures.count(); i++){
                 Gesture gesture = gestures.get(i);
 
-                controller.config().setFloat("Gesture.Swipe.MinVelocity", 450f);
+                controller.config().setFloat("Gesture.Swipe.MinVelocity", 1000f);
                 controller.config().setFloat("Gesture.Swipe.MinLength", 130f);
                 controller.config().save();
 
@@ -78,11 +78,6 @@ public class LeapHandler{
                         case TYPE_SWIPE:
                         SwipeGesture swipe = new SwipeGesture(gesture);
 
-                        if(hands.get(0).isValid() && hands.get(1).isValid())
-                        {
-                        gameManager.duoSwipeDownCommand(swipe.direction(), swipe.speed(), hand.palmPosition().getX(), hand.palmPosition().getY());
-                        }
-                        else
                         gameManager.swipeCommand(swipe.direction(), swipe.speed(), hand.palmPosition().getX(),hand.palmPosition().getY());
 						/*System.out.println("Swipe ID: " + swipe.id() +
 								" State: " + swipe.state() +
