@@ -21,14 +21,17 @@ public class PlayState extends State {
     int ledgeCount = 20;
     Hero hero;
     TheMaster master;
+    //Animator animator = new Animator();
 
     public PlayState(GSM gsm) {
         super(gsm);
+        //animator.create();
         makeTextures();
         background = new ScrollingBackground(this);
         hero = new Hero(200, 200, this);
         master = new TheMaster(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         generateInitialLedges();
+        //entities.add();
         entities.add(hero);
         entities.add(master);
     }
@@ -46,33 +49,77 @@ public class PlayState extends State {
         }
     }
 
-    private Ledge generateLedge(Ledge previous) {
-        if (previous == null) {
-            return new Ledge(50, 300);
+    private Ledge generateLedge(Ledge previous)
+    {
+        if(previous == null)
+        {
+            return new Ledge(hero.getX(),hero.getY());
         }
 
-        float ledgeX = previous.getX() + 100;
+        float ledgeX = previous.getX() + 125;
         float ledgeY = 300;
 
         if (previous.getY() == 300) {
             int determine = random.nextInt(2);
 
-            if (determine == 1)
-                ledgeY = 100;
+            if(determine == 1)
+                ledgeY = 200;
             else
-                ledgeY = 300;
-        } else if (previous.getY() == 100)
+                ledgeY = 400;
+        }
+
+        else if(previous.getY() == 100)
             ledgeY = 200;
 
-        else if (previous.getY() == 300) {
+        else if(previous.getY() == 400)
+        {
             int determine = random.nextInt(2);
 
             if (determine == 1)
                 ledgeY = 200;
             else
+                ledgeY = 800;
+        }
+
+        else if(previous.getY() == 500) {
+            int determine = random.nextInt(2);
+
+            if (determine == 1)
                 ledgeY = 400;
-        } else if (previous.getY() == 400)
-            ledgeY = 300;
+        }
+        else if(previous.getY() == 600)
+        {
+            int determine = random.nextInt(2);
+
+            if(determine == 1)
+                ledgeY = 500;
+            else
+                ledgeY = 700;
+        }
+
+        else if(previous.getY() == 700)
+        {
+            int determine = random.nextInt(2);
+
+            if(determine == 1)
+                ledgeY = 200;
+            else
+                ledgeY = 400;
+        }
+
+        else if(previous.getY() == 800)
+        {
+            int determine = random.nextInt(2);
+
+            if(determine == 1)
+                ledgeY = 700;
+            else
+                ledgeY = 900;
+        }
+
+        else if(previous.getY() == 900)
+            ledgeY = 800;
+
 
         return new Ledge(ledgeX, ledgeY);
     }
@@ -84,7 +131,7 @@ public class PlayState extends State {
         Ledge.texture = new Texture(pixmap);
         pixmap.dispose();
 
-        pixmap = new Pixmap(30, 30, Pixmap.Format.RGBA8888);
+        pixmap = new Pixmap(10,40, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.BLUE);
         pixmap.fill();
         Hero.texture = new Texture(pixmap);
@@ -149,13 +196,12 @@ public class PlayState extends State {
         else
             master.setColor(Color.RED);
     }
-    public void pinchCommand()
-    {
+    public void pinchCommand() {
         //master.setColor(Color.PINK);
-
     }
     public void render(SpriteBatch batch)
     {
+        //animator.render(hero);
         batch.begin();
 
         for(Entity entity : entities)
