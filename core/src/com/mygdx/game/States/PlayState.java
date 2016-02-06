@@ -56,7 +56,7 @@ public class PlayState extends State{
     {
         if(previous == null)
         {
-            return new Ledge(50,300);
+            return new Ledge(hero.getX(),hero.getY());
         }
 
         float ledgeX = previous.getX() + 100;
@@ -67,15 +67,45 @@ public class PlayState extends State{
             int determine = random.nextInt(2);
 
             if(determine == 1)
-                ledgeY = 100;
+                ledgeY = 200;
             else
-                ledgeY = 300;
+                ledgeY = 400;
         }
 
         else if(previous.getY() == 100)
             ledgeY = 200;
 
-        else if(previous.getY() == 300)
+        else if(previous.getY() == 400)
+        {
+            int determine = random.nextInt(2);
+
+            if(determine == 1)
+                ledgeY = 200;
+            else
+                ledgeY = 800;
+        }
+
+        else if(previous.getY() == 500)
+        {
+            int determine = random.nextInt(2);
+
+            if(determine == 1)
+                ledgeY = 400;
+            else
+                ledgeY = 600;
+        }
+
+        else if(previous.getY() == 600)
+        {
+            int determine = random.nextInt(2);
+
+            if(determine == 1)
+                ledgeY = 500;
+            else
+                ledgeY = 700;
+        }
+
+        else if(previous.getY() == 700)
         {
             int determine = random.nextInt(2);
 
@@ -85,8 +115,18 @@ public class PlayState extends State{
                 ledgeY = 400;
         }
 
-        else if(previous.getY() == 400)
-            ledgeY = 300;
+        else if(previous.getY() == 800)
+        {
+            int determine = random.nextInt(2);
+
+            if(determine == 1)
+                ledgeY = 700;
+            else
+                ledgeY = 900;
+        }
+
+        else if(previous.getY() == 900)
+            ledgeY = 800;
 
         return new Ledge(ledgeX,ledgeY);
     }
@@ -138,7 +178,8 @@ public class PlayState extends State{
         hero.reverseGravity();
     }
 
-    public void moveCommand(float x, float y, float z){
+    public void moveCommand(float x, float y, float z)
+    {
         master.setX(x);
         master.setY(y);
     }
@@ -149,11 +190,21 @@ public class PlayState extends State{
         else
             master.setColor(Color.BLUE);
     }
+<<<<<<< HEAD
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y){
         if(direction.getX() >= 0 )
             master.setColor(Color.GREEN);
         else
             master.setColor(Color.BLACK);
+=======
+    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
+    {
+        if(direction.getX() >= 0)
+            master.setColor(Color.GREEN);
+        else
+            master.setColor(Color.MAGENTA);
+
+>>>>>>> master
     }
     public void render(SpriteBatch batch)
     {

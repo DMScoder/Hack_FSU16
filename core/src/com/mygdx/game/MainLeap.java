@@ -6,8 +6,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+<<<<<<< HEAD
 import com.leapmotion.leap.*;
 import com.mygdx.game.States.Animator;
+=======
+>>>>>>> master
 import com.mygdx.game.States.GSM;
 
 public class MainLeap extends ApplicationAdapter implements InputProcessor{

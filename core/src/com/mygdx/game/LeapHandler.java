@@ -41,6 +41,7 @@ public class LeapHandler{
                         hand.stabilizedPalmPosition().getZ());
 
             GestureList gestures = frame.gestures();
+<<<<<<< HEAD
 			for(int i=0; i < gestures.count(); i++) {
 				Gesture gesture = gestures.get(i);
 
@@ -63,6 +64,30 @@ public class LeapHandler{
 							CircleGesture previous = new CircleGesture(controller.frame(1).gesture(circle.id()));
 							sweptAngle = (circle.progress() - previous.progress()) * 2 * Math.PI;
 						}
+=======
+            for(int i=0; i < gestures.count(); i++) {
+                Gesture gesture = gestures.get(i);
+
+                controller.config().setFloat("Gesture.Swipe.MinVelocity", 500f);
+                controller.config().setFloat("Gesture.Swipe.MinLenght", 100f);
+                controller.config().save();
+
+                switch(gesture.type()){
+                    case TYPE_CIRCLE:
+                        CircleGesture circle = new CircleGesture(gesture);
+
+                        Boolean isclockwise = false;
+                        if(circle.pointable().direction().angleTo(circle.normal()) <= Math.PI/4)
+                            isclockwise= true;
+                        else
+                            isclockwise = false;
+
+                        double sweptAngle = 0;
+                        if(circle.state() != Gesture.State.STATE_START){
+                            CircleGesture previous = new CircleGesture(controller.frame(1).gesture(circle.id()));
+                            sweptAngle = (circle.progress() - previous.progress()) * 2 * Math.PI;
+                        }
+>>>>>>> master
                         controller.config().setFloat("Gesture.Circle.MinArc", 6f);
                         controller.config().save();
 
@@ -70,8 +95,13 @@ public class LeapHandler{
                         //System.out.println("Circle ID: " + circle.id() + " State: " + circle.state() + " Progress: " + circle.progress() + " " + clockwiseness);
                         break;
 
+<<<<<<< HEAD
 					case TYPE_SWIPE:
 						SwipeGesture swipe = new SwipeGesture(gesture);
+=======
+                    case TYPE_SWIPE:
+                        SwipeGesture swipe = new SwipeGesture(gesture);
+>>>>>>> master
                         controller.config().setFloat("Gesture.Swipe.MinVelocity", 1000f);
                         controller.config().setFloat("Gesture.Swipe.MinLength", 150f);
                         controller.config().save();
@@ -81,9 +111,15 @@ public class LeapHandler{
 //								" Swipe Position: " + swipe.position() +
 //								" Direction: " + swipe.direction() +
 //								" Speed: " + swipe.speed());
+<<<<<<< HEAD
 						break;
 				}
 			}
+=======
+                        break;
+                }
+            }
+>>>>>>> master
         }
     }
 }
