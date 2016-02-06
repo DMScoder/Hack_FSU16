@@ -26,11 +26,6 @@ public class MenuState extends State {
     }
 
     @Override
-    public void update(float dt) {
-
-    }
-
-    @Override
     public void render(SpriteBatch sb) {
         sb.begin();
         sb.draw(background, 0, 0, 500, 500);
