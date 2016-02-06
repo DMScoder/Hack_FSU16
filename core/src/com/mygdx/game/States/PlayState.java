@@ -28,7 +28,7 @@ public class PlayState extends State{
         makeTextures();
         background = new ScrollingBackground(this);
         hero = new Hero(200,200,this);
-        master = new TheMaster(0,0);
+        master = new TheMaster(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         generateInitialLedges();
         entities.add(hero);
         entities.add(master);
@@ -102,11 +102,12 @@ public class PlayState extends State{
         Hero.texture = new Texture(pixmap);
         pixmap.dispose();
 
-        pixmap = new Pixmap(100,100, Pixmap.Format.RGBA8888);
+        TheMaster.texture = new Texture("Untitled.png");
+        /*pixmap = new Pixmap(30,30, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.RED);
         pixmap.fill();
         TheMaster.texture = new Texture(pixmap);
-        pixmap.dispose();
+        pixmap.dispose();*/
     }
 
     @Override
@@ -135,7 +136,6 @@ public class PlayState extends State{
     }
 
     public void moveCommand(float x, float y, float z){
-        System.out.println(master.getX() + master.getY());
         master.setX(x);
         master.setY(y);
     }

@@ -36,7 +36,6 @@ public class GSM {
     }
 
     public void moveCommand(float x, float y, float z){
-        System.out.println("got here");
         states.peek().moveCommand(x, y, z);
 
     }

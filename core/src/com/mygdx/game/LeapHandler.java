@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.leapmotion.leap.*;
 import com.mygdx.game.States.GSM;
@@ -34,8 +35,10 @@ public class LeapHandler{
                 hands = frame.hands();
                 hand = hands.get(0);
 
-            //System.out.println("got here");
-            gameManager.moveCommand(hand.palmPosition().getX()+100, hand.palmPosition().getY(), hand.palmPosition().getZ());
+            if(hand.palmPosition().getX()!=0&&hand.palmPosition().getY()!=0)
+                gameManager.moveCommand(hand.stabilizedPalmPosition().getX()*2.5f + Gdx.graphics.getWidth()/2,
+                        hand.stabilizedPalmPosition().getY()*1.2f,
+                        hand.stabilizedPalmPosition().getZ());
 
             GestureList gestures = frame.gestures();
 			for(int i=0; i < gestures.count(); i++) {
