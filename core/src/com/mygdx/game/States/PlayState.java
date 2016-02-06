@@ -3,14 +3,11 @@ package com.mygdx.game.States;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Entity;
 import com.mygdx.game.Hero;
 import com.mygdx.game.Ledge;
 import com.mygdx.game.ScrollingBackground;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -122,7 +119,7 @@ public class PlayState extends State{
 
     public void reverseGravity()
     {
-        //hero.reverseGravity();
+        hero.reverseGravity();
     }
 
     public void render(SpriteBatch batch)

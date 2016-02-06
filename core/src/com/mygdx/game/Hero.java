@@ -13,6 +13,7 @@ public class Hero extends Entity{
     public static Texture texture;
     private float dx = 0;
     private float dy = 0;
+    private float gravity = -3;
     private PlayState state;
 
     public Hero(float x, float y, PlayState state)
@@ -24,6 +25,11 @@ public class Hero extends Entity{
     public void update()
     {
          move();
+    }
+
+    public void reverseGravity()
+    {
+        gravity*=-1;
     }
 
     private void move()
@@ -45,7 +51,7 @@ public class Hero extends Entity{
             dx+=1;
         }
 
-        dy-=3;
+        dy+=gravity;
 
         if(this.getX()+dx<Gdx.graphics.getWidth()&&this.getX()+dx>0)
             this.setX(this.getX()+dx);
