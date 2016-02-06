@@ -41,10 +41,10 @@ public class GSM {
     }
     public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y)
     {
-        states.peek().circleCommand(isclockwise, sweptAngle, x, y);
+        states.peek().circleCommand(isclockwise, sweptAngle, x,y);
     }
-    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
-    {
+
+    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y){
         states.peek().swipeCommand(direction, speed, x, y);
     }
 }

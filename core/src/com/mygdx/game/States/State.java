@@ -21,13 +21,13 @@ public abstract class State {
     public abstract void render(SpriteBatch sb);
     public abstract void dispose();
 
-    public void moveCommand(float x, float y, float z)
-    {
+    public void moveCommand(float x, float y, float z){
+
     }
     public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y)
     {
     }
-    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
-    {
+    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y){
+
     }
 }
