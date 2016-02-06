@@ -190,21 +190,12 @@ public class PlayState extends State{
         else
             master.setColor(Color.BLUE);
     }
-<<<<<<< HEAD
+
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y){
         if(direction.getX() >= 0 )
             master.setColor(Color.GREEN);
         else
             master.setColor(Color.BLACK);
-=======
-    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
-    {
-        if(direction.getX() >= 0)
-            master.setColor(Color.GREEN);
-        else
-            master.setColor(Color.MAGENTA);
-
->>>>>>> master
     }
     public void render(SpriteBatch batch)
     {
