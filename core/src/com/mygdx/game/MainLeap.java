@@ -10,34 +10,19 @@ import com.leapmotion.leap.*;
 import com.mygdx.game.States.GSM;
 
 public class MainLeap extends ApplicationAdapter implements InputProcessor{
+
 	SpriteBatch batch;
-	Controller controller;
-	SampleListener listener;
 	GSM manager;
-	static Hand hand;
-	static HandList hands;
-
-	static class SampleListener extends Listener{
-
-		public void onConnect(Controller controller)
-		{
-			System.out.println("Connected");
-		}
-
-		public void onFrame(Controller controller)
-		{
-			hands = controller.frame().hands();
-			hand = hands.get(0);
-		}
-	}
+	LeapHandler leaphandler;
 
 	@Override
 	public void create () {
-		listener = new SampleListener();
-		controller = new Controller();
-		controller.addListener(listener);
+//		listener = new SampleListener();
+//		controller = new Controller();
+//		controller.addListener(listener);
 		batch = new SpriteBatch();
 		manager = new GSM();
+		leaphandler = new LeapHandler(manager);
 		Gdx.input.setInputProcessor(this);
 	}
 

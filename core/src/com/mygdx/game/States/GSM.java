@@ -36,5 +36,17 @@ public class GSM {
         states.peek().render(sb);
     }
 
+    public void moveCommand(float x, float y, float z){
+        System.out.println("got here");
+        states.peek().moveCommand(x, y, z);
 
+    }
+    public void circleCommand(int circleID, boolean isclockwise, double sweptAngle, float x, float y)
+    {
+        if(states.peek() instanceof PlayState)
+            ;
+
+
+
+    }
 }

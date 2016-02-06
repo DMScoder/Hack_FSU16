@@ -1,14 +1,12 @@
 package com.mygdx.game.States;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.Entity;
-import com.mygdx.game.Hero;
-import com.mygdx.game.Ledge;
-import com.mygdx.game.ScrollingBackground;
+import com.mygdx.game.*;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
 import java.util.ArrayList;
@@ -24,6 +22,7 @@ public class PlayState extends State{
     ArrayList <Entity> entities = new ArrayList<Entity>();
     int ledgeCount = 20;
     Hero hero;
+    TheMaster master;
 
     public PlayState(GSM gsm)
     {
@@ -31,8 +30,10 @@ public class PlayState extends State{
         makeTextures();
         background = new ScrollingBackground(this);
         hero = new Hero(200,200,this);
+        master = new TheMaster(0,0);
         generateInitialLedges();
         entities.add(hero);
+        entities.add(master);
     }
 
     private void generateInitialLedges()
@@ -98,6 +99,12 @@ public class PlayState extends State{
         pixmap.fill();
         Hero.texture = new Texture(pixmap);
         pixmap.dispose();
+
+        pixmap = new Pixmap(100,100, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.RED);
+        pixmap.fill();
+        TheMaster.texture = new Texture(pixmap);
+        pixmap.dispose();
     }
 
     @Override
@@ -125,6 +132,11 @@ public class PlayState extends State{
         //hero.reverseGravity();
     }
 
+    public void moveCommand(float x, float y, float z){
+        System.out.println(master.getX() + master.getY());
+        master.setX(x);
+        master.setY(y);
+    }
     public void render(SpriteBatch batch)
     {
         batch.begin();
