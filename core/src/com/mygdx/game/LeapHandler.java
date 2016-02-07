@@ -40,7 +40,7 @@ public class LeapHandler{
                         hand.stabilizedPalmPosition().getY()*1.2f,
                         hand.stabilizedPalmPosition().getZ());
 
-            if(hand .pinchStrength() >= 0.6)
+            if(hand .pinchStrength() >= 0.95)
                 gameManager.pinchCommand();
 
             GestureList gestures = frame.gestures();

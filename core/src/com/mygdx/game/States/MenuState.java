@@ -36,7 +36,6 @@ public class MenuState extends State {
         Gdx.gl20.glClearColor(169f/255f,169f/255f,169f/255f,169f/255f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         sprite.draw(sb);
-        //Put gesture function here instead of "justTouched".
         if (swiped) {
             gsm.set(new PlayState(gsm));
         }
@@ -46,9 +45,9 @@ public class MenuState extends State {
     @Override
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y) {
         if(speed >0 )
-        //super.swipeCommand(direction, speed, x, y);
+        super.swipeCommand(direction, speed, x, y);
         swiped = true;
-        //gsm.set(new PlayState(gsm));
+        gsm.set(new PlayState(gsm));
     }
 
     @Override

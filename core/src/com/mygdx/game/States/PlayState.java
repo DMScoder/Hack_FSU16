@@ -38,6 +38,14 @@ public class PlayState extends State {
         //entities.add();
         entities.add(hero);
         entities.add(master);
+    }
+
+    public void pinchCommand() {
+        if(lastPinch > ticks)
+            return;
+        if(!isFrozen)
+            generateBomb();
+        lastPinch = ticks + 360;
 
     }
 
@@ -49,7 +57,7 @@ public class PlayState extends State {
 
         Random random = new Random(500);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             int d = random.nextInt(1500);
             int f = random.nextInt(500);
             entities.add(new Bomb((750 + d), Gdx.graphics.getHeight() + f, this));
@@ -190,14 +198,6 @@ public class PlayState extends State {
             }
         }
 
-    public void pinchCommand() {
-        if(lastPinch > ticks)
-            return;
-
-        //generateBomb();
-        lastPinch = ticks + 360;
-
-    }
 
     public void render(SpriteBatch batch)
     {
@@ -228,6 +228,7 @@ public class PlayState extends State {
         }
         batch.end();
     }
+
 
     @Override
     public void dispose() {

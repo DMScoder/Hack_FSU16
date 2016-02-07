@@ -46,16 +46,16 @@ public class Bomb extends Entity{
                 ledge = (Ledge) entities.get(i);
                 if (Util.checkCollision(this, ledge)) {
                     this.removeFlag = true;
-                    System.out.print("LOL");
+
                     break;
                 }
             }
         }
 
 
-        if (Util.checkCollision(this, hero)) {
+        if (this != null && hero != null && Util.checkCollision(this, hero)) {
             this.removeFlag = true;
-            //System.out.print("LOL");
+
         }
 
         if(this.removeFlag == false) {

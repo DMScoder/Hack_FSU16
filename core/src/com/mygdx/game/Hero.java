@@ -121,7 +121,7 @@ public class Hero extends Entity{
             dx=0;
 
 
-        if(this.getY()+dy<Gdx.graphics.getHeight()-35&&this.getY()+dy>0)
+        if(this.getY()+dy<Gdx.graphics.getHeight()-50&&this.getY()+dy>0)
         {
             this.setY(this.getY()+dy);
         }
