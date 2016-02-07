@@ -37,6 +37,7 @@ public class MenuState extends State {
 
     @Override
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y) {
+        if(speed >0 )
         //super.swipeCommand(direction, speed, x, y);
         System.out.println("Swiped");
         swiped = true;

@@ -40,7 +40,7 @@ public class LeapHandler{
                         hand.stabilizedPalmPosition().getY()*1.2f,
                         hand.stabilizedPalmPosition().getZ());
 
-            if(hand .pinchStrength() >= 0.9)
+            if(hand .pinchStrength() >= 0.6)
                 gameManager.pinchCommand();
 
             GestureList gestures = frame.gestures();
@@ -48,8 +48,8 @@ public class LeapHandler{
             for(int i =0; i < gestures.count(); i++){
                 Gesture gesture = gestures.get(i);
 
-                controller.config().setFloat("Gesture.Swipe.MinVelocity", 1000f);
-                controller.config().setFloat("Gesture.Swipe.MinLength", 130f);
+                controller.config().setFloat("Gesture.Swipe.MinVelocity", 10f);
+                controller.config().setFloat("Gesture.Swipe.MinLength", 10f);
                 controller.config().save();
 
                 switch(gesture.type()){

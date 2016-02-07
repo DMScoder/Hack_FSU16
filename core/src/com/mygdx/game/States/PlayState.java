@@ -21,6 +21,7 @@ public class PlayState extends State {
     int ledgeCount = 20;
     Hero hero;
     TheMaster master;
+    TheMaster master2;
 
     boolean isPinched = false;
     long ticks = 0;
@@ -159,7 +160,7 @@ public class PlayState extends State {
 
     }
 
-    public void spawnMinion() {
+    public void spawnBomb() {
 
     }
 
@@ -177,18 +178,11 @@ public class PlayState extends State {
     }
 
     public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y) {
-        reverseGravity();
     }
 
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y) {
-//        if (speed > 400) {
-//            if ((direction.getX() >= 0))
-//                master.setColor(Color.GREEN);
-//            else
-//                master.setColor(Color.MAGENTA);
-//            System.out.println("fire" + speed);
-//        }
-//        //System.out.println("from command" + speed);
+        if (speed > 400)
+            reverseGravity();
     }
 
     public void duoSwipeDownCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
@@ -200,29 +194,33 @@ public class PlayState extends State {
     }
     public void pinchCommand() {
 
-        if(lastPinch > ticks)
-            return;
-        lastPinch = ticks + 120;
-        TheMaster master2 = master;
-        TheMaster.texture = new Texture("Pinch");
-        master = new TheMaster(master2.getX(),master2.getY());
-
-        if(Math.abs(hero.getX()-master.getX())<50&&Math.abs(hero.getY()-master.getY())<50)
-        {
-            System.out.println("PINCHED");
-            currentPinch = ticks + 360;
-            lastPinch = ticks + 720;
-            isPinched = true;
-        }
+//        if(lastPinch > ticks)
+//            return;
+//        lastPinch = ticks + 120;
+//
+//        master2 = new TheMaster(master.getX(),master.getY());
+//        //TheMaster.texture = new Texture("Pinch.png");
+//
+//        System.out.println(lastPinch);
+//        //master2 = new TheMaster(master2.getX(),master2.getY());
+//        System.out.println("got here");
+//        //if(Math.abs(hero.getX()-master.getX())<50&&Math.abs(hero.getY()-master.getY())<50)
+//        if(Util.checkCollision(master2, hero) == true)
+//        {
+//            System.out.println("PINCHED");
+//            currentPinch = ticks + 360;
+//            lastPinch = ticks + 720;
+//            isPinched = true;
+//        }
     }
     public void render(SpriteBatch batch)
     {
-        /*if(!isPinched&&lastPinch==ticks)
-        {
-            TheMaster master2 = master;
-            TheMaster.texture = new Texture("Untitled.png");
-            master = new TheMaster(master2.getX(),master2.getY());
-        }*/
+//        if(!isPinched&&lastPinch==ticks)
+//        {
+//            TheMaster master2 = master;
+//            TheMaster.texture = new Texture("Untitled.png");
+//            master = new TheMaster(master2.getX(),master2.getY());
+//        }
 
         if(isPinched&&currentPinch<ticks)
         {

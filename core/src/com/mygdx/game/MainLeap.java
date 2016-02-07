@@ -16,9 +16,7 @@ public class MainLeap extends ApplicationAdapter implements InputProcessor{
 
 	@Override
 	public void create () {
-//		listener = new SampleListener();
-//		controller = new Controller();
-//		controller.addListener(listener);
+
 		batch = new SpriteBatch();
 		manager = new GSM();
 		leaphandler = new LeapHandler(manager);
