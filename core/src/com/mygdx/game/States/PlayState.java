@@ -184,7 +184,7 @@ public class PlayState extends State {
                 System.out.println("Press Count is: " + pressCount++);
             else {
                 master.setColor(Color.WHITE);
-                pressCount = 0;
+
                 brokenFree = true;
             }
         }
