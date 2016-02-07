@@ -70,8 +70,10 @@ public class Hero extends Entity{
                 }
             if(entities.get(i) instanceof Powerup)
             {
-                playState.powerUp();
-                entities.get(i).removeFlag=true;
+                if(Util.checkCollision(this, (Powerup)entities.get(i))) {
+                    playState.powerUp();
+                    entities.get(i).removeFlag = true;
+                }
             }
         }
         if(onLedge == false)

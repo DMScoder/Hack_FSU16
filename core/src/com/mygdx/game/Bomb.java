@@ -47,6 +47,7 @@ public class Bomb extends Entity{
                 if (Util.checkCollision(this, ledge)) {
                     this.removeFlag = true;
                     System.out.print("LOL");
+                    break;
                 }
             }
         }
@@ -54,7 +55,7 @@ public class Bomb extends Entity{
 
         if (Util.checkCollision(this, hero)) {
             this.removeFlag = true;
-            System.out.print("LOL");
+            //System.out.print("LOL");
         }
 
         if(this.removeFlag == false) {

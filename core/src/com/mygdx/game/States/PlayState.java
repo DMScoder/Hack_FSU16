@@ -18,10 +18,8 @@ public class PlayState extends State {
     int ledgeCount = 20;
     Hero hero;
     TheMaster master;
-    TheMaster master2;
     int pressCount = 0;
     boolean isFrozen = false;
-    //boolean brokenFree = true;
 
     int bombCount = 10;
 
@@ -40,7 +38,7 @@ public class PlayState extends State {
         //entities.add();
         entities.add(hero);
         entities.add(master);
-        generateBomb();
+
     }
 
     public ArrayList<Entity> getEntity() {
@@ -157,14 +155,6 @@ public class PlayState extends State {
         pixmap.dispose();
 
         TheMaster.texture = new Texture("Untitled.png");
-
-        pixmap = new Pixmap(30,30, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.RED);
-        pixmap.fill();
-        Powerup.texture = new Texture(pixmap);
-        pixmap.dispose();
-
-        TheMaster.texture = new Texture("Untitled.png");
     }
 
     @Override
@@ -176,7 +166,7 @@ public class PlayState extends State {
     }
 
     public void moveCommand(float x, float y, float z) {
-        if(isFrozen = false)
+        if(!isFrozen)
         {
             master.setX(x);
             master.setY(y);
@@ -191,11 +181,7 @@ public class PlayState extends State {
     }
 
     public void keyPress(com.leapmotion.leap.Vector direction) {
-
-        if (direction.equals(0))
-            ;
-        else {
-            if (pressCount <= 20)
+            if (pressCount <= 5)
                 System.out.println("Press Count is: " + pressCount++);
             else {
                 master.setColor(Color.WHITE);
@@ -203,13 +189,12 @@ public class PlayState extends State {
                 isFrozen = false;
             }
         }
-    }
 
     public void pinchCommand() {
-
         if(lastPinch > ticks)
             return;
 
+        //generateBomb();
         lastPinch = ticks + 360;
 
     }
@@ -236,9 +221,8 @@ public class PlayState extends State {
         for(Entity entity : entities)
             entity.render(batch);
 
-        if(random.nextInt(5)==0)
+        if(random.nextInt(500)==0)
         {
-            System.out.println("Made");
             Powerup powerup = new Powerup(1500,random.nextInt(700));
             entities.add(powerup);
         }

@@ -50,6 +50,8 @@ public class LeapHandler{
 
                 controller.config().setFloat("Gesture.Swipe.MinVelocity", 10f);
                 controller.config().setFloat("Gesture.Swipe.MinLength", 10f);
+                controller.config().setFloat("Gesture.KeyTap.MinDownVelocity", 40.0f);
+                controller.config().setFloat("Gesture.KeyTap.MinDistance", 1.0f);
                 controller.config().save();
 
                 switch(gesture.type()){
