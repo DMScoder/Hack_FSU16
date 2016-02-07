@@ -44,7 +44,7 @@ public class Hero extends Entity{
         onLedge = false;
 
         for(int i = 0; i < entities.size(); i++) {
-            if (entities.get(i) instanceof Ledge) {
+                if (entities.get(i) instanceof Ledge) {
                 ledge = entities.get(i);
                 if(Util.checkCollision(this, ledge))
                     if(orientation>0) {

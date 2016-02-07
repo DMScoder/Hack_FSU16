@@ -13,7 +13,13 @@ public class Bomb extends Entity{
     public static Texture texture;
     private float gravity = -.5f;
     private PlayState playState;
+    Util util = new Util();
     long ticks = 0;
+
+    float dx = 1;
+    float dy = 2;
+
+    private double x,y,h,w;
 
     public Bomb(float x, float y, PlayState state)
     {
@@ -24,9 +30,36 @@ public class Bomb extends Entity{
 
     public void update()
     {
-        ticks++;
+        //ticks++;
+        Hero hero = null;
+        Bomb bomb = null;
+        Ledge ledge = null;
+        int bombI = 0;
+        ArrayList<Entity> entities = playState.getEntity();
 
-        ArrayList<Entity> entries = playState.getEntity();
+        for(int i = 0; i < entities.size(); i++) {
+            if (entities.get(i) instanceof Hero) {
+                hero = (Hero) entities.get(i);
+            }
 
+            if (entities.get(i) instanceof Ledge) {
+                ledge = (Ledge) entities.get(i);
+                if (Util.checkCollision(this, ledge)) {
+                    this.removeFlag = true;
+                    System.out.print("LOL");
+                }
+            }
+        }
+
+
+        if (Util.checkCollision(this, hero)) {
+            this.removeFlag = true;
+            System.out.print("LOL");
+        }
+
+        if(this.removeFlag == false) {
+            this.setX(this.getX() - 3);
+            this.setY(this.getY() - 4);
+        }
     }
 }
