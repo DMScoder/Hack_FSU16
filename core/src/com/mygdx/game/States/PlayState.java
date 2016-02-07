@@ -129,14 +129,14 @@ public class PlayState extends State {
     }
 
     public void makeTextures() {
-        Pixmap pixmap = new Pixmap(50, 10, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.GRAY);
+        Pixmap pixmap = new Pixmap(100, 10, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.BLACK);
         pixmap.fill();
         Ledge.texture = new Texture(pixmap);
         pixmap.dispose();
 
-        pixmap = new Pixmap(10,40, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.BLUE);
+        pixmap = new Pixmap(20,50, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.RED);
         pixmap.fill();
         Hero.texture = new Texture(pixmap);
         pixmap.dispose();
@@ -219,12 +219,6 @@ public class PlayState extends State {
 //            TheMaster.texture = new Texture("Untitled.png");
 //            master = new TheMaster(master2.getX(),master2.getY());
 //        }
-
-        if(isPinched&&currentPinch<ticks)
-        {
-            hero.setX(master.getX());
-            hero.setY(master.getY());
-        }
         ticks++;
         //animator.render(hero);
         batch.begin();

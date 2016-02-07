@@ -107,15 +107,20 @@ public class Hero extends Entity{
 
         dy+=gravity;
 
-        if(!(this.getX()+dx<Gdx.graphics.getWidth())||!(this.getX()+dx>0))
-            this.setX(Math.abs(Gdx.graphics.getWidth()-this.getX()));
-        else
+        if(this.getX()+dx<Gdx.graphics.getWidth()&&this.getX()+dx>0)
+        {
             this.setX(this.getX()+dx);
-
-        if(!(this.getY()+dy<Gdx.graphics.getHeight())||!(this.getY()+dy>0))
-            this.setY(Math.abs(Gdx.graphics.getHeight()-this.getY()));
+        }
         else
+            dx=0;
+
+
+        if(this.getY()+dy<Gdx.graphics.getHeight()&&this.getY()+dy>0)
+        {
             this.setY(this.getY()+dy);
+        }
+        else
+            dy=0;
 
         if(!onLedge)
             dx/=1.5;
