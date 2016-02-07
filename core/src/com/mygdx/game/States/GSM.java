@@ -15,7 +15,6 @@ public class GSM {
     public GSM() {
         states = new Stack<State>();
         this.push(new PlayState(this));
-        //this.push(new MenuState(this));
     }
 
     public void push(State state) {
