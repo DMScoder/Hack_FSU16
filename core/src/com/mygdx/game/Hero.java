@@ -43,7 +43,6 @@ public class Hero extends Entity{
         Entity ledge = null;
         onLedge = false;
 
-
         for(int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Ledge) {
                 ledge = entities.get(i);
@@ -69,7 +68,12 @@ public class Hero extends Entity{
                         }
                     }
                 }
+            if(entities.get(i) instanceof Powerup)
+            {
+                playState.powerUp();
+                entities.get(i).removeFlag=true;
             }
+        }
         if(onLedge == false)
         {
             gravity = -.5f*orientation;
@@ -107,7 +111,7 @@ public class Hero extends Entity{
 
         dy+=gravity;
 
-        if(this.getX()+dx<Gdx.graphics.getWidth()&&this.getX()+dx>0)
+        if(this.getX()+dx<Gdx.graphics.getWidth()-25&&this.getX()+dx>0)
         {
             this.setX(this.getX()+dx);
         }
@@ -115,7 +119,7 @@ public class Hero extends Entity{
             dx=0;
 
 
-        if(this.getY()+dy<Gdx.graphics.getHeight()&&this.getY()+dy>0)
+        if(this.getY()+dy<Gdx.graphics.getHeight()-35&&this.getY()+dy>0)
         {
             this.setY(this.getY()+dy);
         }
@@ -124,6 +128,5 @@ public class Hero extends Entity{
 
         if(!onLedge)
             dx/=1.5;
-        //dy/=1.1;
     }
 }

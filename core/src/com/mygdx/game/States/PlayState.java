@@ -19,13 +19,11 @@ public class PlayState extends State {
     TheMaster master;
     TheMaster master2;
     int pressCount = 0;
-    boolean brokenFree = true;
+    boolean isFrozen = false;
+    //boolean brokenFree = true;
 
-    boolean isPinched = false;
-    long ticks = 0;
     long lastPinch = 0;
-    long currentPinch = 0;
-    //Animator animator = new Animator();
+    long ticks = 0;
 
     public PlayState(GSM gsm) {
         super(gsm);
@@ -34,6 +32,7 @@ public class PlayState extends State {
         background = new ScrollingBackground(this);
         hero = new Hero(200, 200, this);
         master = new TheMaster(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        master.setColor(Color.WHITE);
         generateInitialLedges();
         //entities.add();
         entities.add(hero);
@@ -124,8 +123,13 @@ public class PlayState extends State {
         else if(previous.getY() == 900)
             ledgeY = 800;
 
-
         return new Ledge(ledgeX, ledgeY);
+    }
+
+    public void powerUp()
+    {
+        isFrozen = true;
+        master.setColor(Color.CYAN);
     }
 
     public void makeTextures() {
@@ -141,21 +145,17 @@ public class PlayState extends State {
         Hero.texture = new Texture(pixmap);
         pixmap.dispose();
 
-        TheMaster.texture = new Texture("Untitled.png");
-        /*pixmap = new Pixmap(30,30, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.RED);
+        pixmap = new Pixmap(30,30, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.PURPLE);
         pixmap.fill();
-        TheMaster.texture = new Texture(pixmap);
-        pixmap.dispose();*/
+        Powerup.texture = new Texture(pixmap);
+        pixmap.dispose();
+
+        TheMaster.texture = new Texture("Untitled.png");
     }
 
     @Override
     public void handleInput() {
-    }
-
-
-    public void freeze() {
-
     }
 
     public void reverseGravity() {
@@ -163,8 +163,11 @@ public class PlayState extends State {
     }
 
     public void moveCommand(float x, float y, float z) {
-        master.setX(x);
-        master.setY(y);
+        if(isFrozen = false)
+        {
+            master.setX(x);
+            master.setY(y);
+        }
     }
 
     public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y) {
@@ -179,48 +182,28 @@ public class PlayState extends State {
         if (direction.equals(0))
             ;
         else {
-            master.setColor(Color.CYAN);
             if (pressCount <= 20)
                 System.out.println("Press Count is: " + pressCount++);
             else {
                 master.setColor(Color.WHITE);
-
-                brokenFree = true;
+                pressCount = 0;
+                isFrozen = false;
             }
         }
     }
 
     public void pinchCommand() {
 
-//        if(lastPinch > ticks)
-//            return;
-//        lastPinch = ticks + 120;
-//
-//        master2 = new TheMaster(master.getX(),master.getY());
-//        //TheMaster.texture = new Texture("Pinch.png");
-//
-//        System.out.println(lastPinch);
-//        //master2 = new TheMaster(master2.getX(),master2.getY());
-//        System.out.println("got here");
-//        //if(Math.abs(hero.getX()-master.getX())<50&&Math.abs(hero.getY()-master.getY())<50)
-//        if(Util.checkCollision(master2, hero) == true)
-//        {
-//            System.out.println("PINCHED");
-//            currentPinch = ticks + 360;
-//            lastPinch = ticks + 720;
-//            isPinched = true;
-//        }
+        if(lastPinch > ticks)
+            return;
+
+        lastPinch = ticks + 360;
+
     }
+
     public void render(SpriteBatch batch)
     {
-//        if(!isPinched&&lastPinch==ticks)
-//        {
-//            TheMaster master2 = master;
-//            TheMaster.texture = new Texture("Untitled.png");
-//            master = new TheMaster(master2.getX(),master2.getY());
-//        }
         ticks++;
-        //animator.render(hero);
         batch.begin();
 
         for(Entity entity : entities)
@@ -232,6 +215,14 @@ public class PlayState extends State {
 
         for(Entity entity : entities)
             entity.render(batch);
+
+        if(random.nextInt(5)==0)
+        {
+            System.out.println("Made");
+            Powerup powerup = new Powerup(1500,random.nextInt(700));
+            entities.add(powerup);
+        }
+
         batch.end();
     }
 
