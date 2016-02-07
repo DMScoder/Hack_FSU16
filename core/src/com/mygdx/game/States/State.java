@@ -1,6 +1,7 @@
 package com.mygdx.game.States;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.leapmotion.leap.Pointable;
 
 import java.util.Stack;
 
@@ -33,7 +34,7 @@ public abstract class State {
     public void pinchCommand()
     {
     }
-    public void duoSwipeDownCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
-    {
-    }
+   public void keyPress(com.leapmotion.leap.Vector direction)
+   {
+   }
 }

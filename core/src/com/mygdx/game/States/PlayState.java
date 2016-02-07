@@ -6,13 +6,9 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.*;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by m on 2/6/16.
- */
 public class PlayState extends State {
 
     Random random = new Random();
@@ -22,6 +18,8 @@ public class PlayState extends State {
     Hero hero;
     TheMaster master;
     TheMaster master2;
+    int pressCount = 0;
+    boolean brokenFree = true;
 
     boolean isPinched = false;
     long ticks = 0;
@@ -155,13 +153,6 @@ public class PlayState extends State {
     public void handleInput() {
     }
 
-    public void removeLedge() {
-
-    }
-
-    public void spawnBomb() {
-
-    }
 
     public void freeze() {
 
@@ -177,20 +168,28 @@ public class PlayState extends State {
     }
 
     public void circleCommand(boolean isclockwise, double sweptAngle, float x, float y) {
-    }
-
-    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y) {
-        if (speed > 400)
             reverseGravity();
     }
 
-    public void duoSwipeDownCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
-    {
-        /*if(direction.getY() >= 0)
-            master.setColor(Color.BLUE);
-        else
-            master.setColor(Color.RED);*/
+    public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y) {
     }
+
+    public void keyPress(com.leapmotion.leap.Vector direction) {
+
+        if (direction.equals(0))
+            ;
+        else {
+            master.setColor(Color.CYAN);
+            if (pressCount <= 20)
+                System.out.println("Press Count is: " + pressCount++);
+            else {
+                master.setColor(Color.WHITE);
+                pressCount = 0;
+                brokenFree = true;
+            }
+        }
+    }
+
     public void pinchCommand() {
 
 //        if(lastPinch > ticks)

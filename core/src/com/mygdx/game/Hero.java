@@ -43,6 +43,7 @@ public class Hero extends Entity{
         Entity ledge = null;
         onLedge = false;
 
+
         for(int i = 0; i < entities.size(); i++) {
             if (entities.get(i) instanceof Ledge) {
                 ledge = entities.get(i);

@@ -1,6 +1,7 @@
 package com.mygdx.game.States;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.leapmotion.leap.Pointable;
 
 import java.util.Stack;
 
@@ -47,12 +48,12 @@ public class GSM {
     public void swipeCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y){
         states.peek().swipeCommand(direction, speed, x, y);
     }
-    public void duoSwipeDownCommand(com.leapmotion.leap.Vector direction, float speed, float x, float y)
-    {
-        states.peek().duoSwipeDownCommand(direction, speed, x, y);
-    }
     public void pinchCommand()
     {
         states.peek().pinchCommand();
+    }
+    public void keyPress(com.leapmotion.leap.Vector direction)
+    {
+        states.peek().keyPress(direction);
     }
 }

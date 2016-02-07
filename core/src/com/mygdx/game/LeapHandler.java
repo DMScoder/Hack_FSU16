@@ -85,6 +85,11 @@ public class LeapHandler{
 								" Direction: " + swipe.direction() +
 								" Speed: " + swipe.speed());*/
                         break;
+                        case TYPE_KEY_TAP:
+                        SwipeGesture keyPressed = new SwipeGesture(gesture);
+
+                            gameManager.keyPress(keyPressed.direction());
+                            break;
                 }
             }
         }
