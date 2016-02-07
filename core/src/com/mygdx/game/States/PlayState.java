@@ -2,9 +2,11 @@ package com.mygdx.game.States;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.game.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,7 +14,6 @@ import java.util.Random;
 public class PlayState extends State {
 
     Random random = new Random();
-    ScrollingBackground background;
     ArrayList<Entity> entities = new ArrayList<Entity>();
     int ledgeCount = 20;
     Hero hero;
@@ -29,7 +30,6 @@ public class PlayState extends State {
         super(gsm);
         //animator.create();
         makeTextures();
-        background = new ScrollingBackground(this);
         hero = new Hero(200, 200, this);
         master = new TheMaster(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         master.setColor(Color.WHITE);
@@ -203,7 +203,14 @@ public class PlayState extends State {
 
     public void render(SpriteBatch batch)
     {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         ticks++;
+        ShapeRenderer renderer = new ShapeRenderer();
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+        renderer.rect(0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight()/2,Color.TEAL,Color.TEAL,Color.NAVY,Color.NAVY);
+        renderer.rect(0,Gdx.graphics.getHeight()/2,Gdx.graphics.getWidth(),Gdx.graphics.getHeight(),Color.ORANGE,Color.ORANGE,Color.NAVY,Color.NAVY);
+        renderer.end();
         batch.begin();
 
         for(Entity entity : entities)
@@ -222,7 +229,6 @@ public class PlayState extends State {
             Powerup powerup = new Powerup(1500,random.nextInt(700));
             entities.add(powerup);
         }
-
         batch.end();
     }
 
