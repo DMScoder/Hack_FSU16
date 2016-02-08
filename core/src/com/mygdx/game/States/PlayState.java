@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class PlayState extends State {
-
     Random random = new Random();
     ArrayList<Entity> entities = new ArrayList<Entity>();
     int ledgeCount = 20;
@@ -54,8 +53,6 @@ public class PlayState extends State {
     }
 
     private void generateBomb() {
-
-        Random random = new Random(500);
 
         for (int i = 0; i < 15; i++) {
             int d = random.nextInt(1500);
@@ -211,8 +208,11 @@ public class PlayState extends State {
         renderer.end();
         batch.begin();
 
-        for(Entity entity : entities)
-            entity.update();
+        for(int i = 0; i< entities.size();i++)
+        {
+            entities.get(i).update();
+        }
+
 
         for(int i=0;i<entities.size();i++)
             if(entities.get(i).removeFlag)
