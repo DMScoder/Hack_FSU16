@@ -1,5 +1,5 @@
 
-*Mastermind: 
+Mastermind
 
 A 2D platformer game made for the 30 hour 2016 FSU Hackathon using LibGDX and the Leap Motion API.
 
